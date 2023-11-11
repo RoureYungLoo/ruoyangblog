@@ -18,6 +18,4 @@ ruoyang8715@163.com
 
 ## 支持一下
 
-![微信支付](./assets/wechatpay.jpg)
-
-![](./assets/alipay.jpg)
+![微信支付](./assets/inspire.jpg)
