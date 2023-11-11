@@ -18,4 +18,4 @@ ruoyang8715@163.com
 
 ## 支持一下
 
-![微信支付](./assets/inspire.jpg)
+![谢谢~](./assets/inspire.jpg)
