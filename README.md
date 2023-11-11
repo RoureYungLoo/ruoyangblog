@@ -17,3 +17,7 @@ ruoyang8715@163.com
 3. 新增页面50x.html
 
 ## 支持一下
+
+![微信支付](./assets/wechatpay.jpg)
+
+![](./assets/alipay.jpg)
