@@ -14,6 +14,7 @@ ruoyang8715@163.com
 
 1. 新增navigator.html
 2. 新增JavaScript 5.1 5.2 页面
+3. 新增javascr 5.3 字符串页面
 
 ### 2023.11.10
 
