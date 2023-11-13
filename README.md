@@ -10,6 +10,11 @@ ruoyang8715@163.com
 
 ## 更新日志
 
+### 2023.11.11
+
+1. 新增navigator.html
+2. 新增JavaScript 5.1 5.2 页面
+
 ### 2023.11.10
 
 1. 新增页面index.html
