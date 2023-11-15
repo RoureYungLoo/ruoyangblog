@@ -14,6 +14,7 @@ ruoyang8715@163.com
 
 1. 新增JavaScript 5.4 数组 页面
 1. 新增JavaScript 5.5 数组方法 页面
+2. 更新index.html, 增加编程能力提升部分
 
 ### 2023.11.11
 
