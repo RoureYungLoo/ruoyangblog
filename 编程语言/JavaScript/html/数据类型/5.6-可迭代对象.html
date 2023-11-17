@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="zh-Hans-CN">
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width initial-scale=1'>
+    <link type="text/css" rel="styleSheet" href="../../../../assets/css/typora.css" />
+    <title>可迭代对象</title>
+    <script src="../../js/数据类型/5.6-可迭代对象.js"></script>
+</head>
+
+<body class='typora-export os-windows'>
+    <div class='typora-export-content'>
+        <div id='write' class=''>
+            <pre class="md-fences md-end-block ty-contain-cm modeLoaded md-focus" spellcheck="false" lang="javascript"
+                style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap CodeMirror-focused" lang="javascript"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 170.852px; left: 112.172px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre>
+        </div>
+        <div class="CodeMirror-measure"></div>
+        <div style="position: relative; z-index: 1;"></div>
+        <div class="CodeMirror-code" role="presentation" style="">
+            <div class="" style="position: relative;">
+                <pre class=" CodeMirror-line "
+                    role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 可迭代对象：指可以被遍历的对象。是说任何对象都可以被定制为可在 for..of 循环中使用的对象。  迭代：对元素一个一个进行操作。</span></span></pre>
+            </div>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 迭代器是一个对象，它有一个 next() 方法，可以返回下一个元素的值和状态</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// JavaScript中的数组、字符串</span></span></pre>
+            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// Symbol.iterator</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">let</span> <span class="cm-def">range</span> <span class="cm-operator">=</span> {</span></pre>
+            <div class="CodeMirror-activeline" style="position: relative;">
+                <div class="CodeMirror-activeline-background CodeMirror-linebackground"></div>
+                <div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;">
+                </div>
+                <pre class=" CodeMirror-line "
+                    role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">from</span>: <span class="cm-number">1</span>,</span></pre>
+            </div>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">to</span>: <span class="cm-number">5</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre>
+            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 1. for..of 调用首先会调用这个</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">range</span>[<span class="cm-variable">Symbol</span>.<span class="cm-property">iterator</span>] <span class="cm-operator">=</span> <span class="cm-keyword">function</span> () {</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-comment">// ……它返回迭代器对象（iterator object）：</span></span></pre>
+            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-comment">// 2. 接下来，for..of 仅与下面的迭代器对象一起工作，要求它提供下一个值</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">let</span> <span class="cm-def">iterator</span> <span class="cm-operator">=</span> {</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-property">current</span>: <span class="cm-keyword">this</span>.<span class="cm-property">from</span>,</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-property">last</span>: <span class="cm-keyword">this</span>.<span class="cm-property">to</span>,</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">// 3. next() 在 for..of 的每一轮循环迭代中被调用</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">// next: function() {</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">// &nbsp; &nbsp; if (this.current &lt;= this.last) {</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">// &nbsp; &nbsp; &nbsp; &nbsp; // 4. 它将会返回 {done:.., value :...} 格式的对象</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">// &nbsp; &nbsp; &nbsp; &nbsp; return {</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">// &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; done: false,</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">// &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; value: this.current++</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">// &nbsp; &nbsp; &nbsp; &nbsp; }</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">// &nbsp; &nbsp; } else {</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">// &nbsp; &nbsp; &nbsp; &nbsp; return {</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">// &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; done: true</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">// &nbsp; &nbsp; &nbsp; &nbsp; }</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">// &nbsp; &nbsp; }</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">// }</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  }</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-comment">// 3. next() 在 for..of 的每一轮循环迭代中被调用</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable-2">iterator</span>.<span class="cm-property">next</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span> () {</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">if</span> (<span class="cm-keyword">this</span>.<span class="cm-property">current</span> <span class="cm-operator">&lt;=</span> <span class="cm-keyword">this</span>.<span class="cm-property">last</span>) {</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-comment">// 4. 它将会返回 {done:.., value :...} 格式的对象</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">return</span> {</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-property">done</span>: <span class="cm-atom">false</span>,</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-property">value</span>: <span class="cm-keyword">this</span>.<span class="cm-property">current</span><span class="cm-operator">++</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  }</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  } <span class="cm-keyword">else</span> {</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">return</span> {</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-property">done</span>: <span class="cm-atom">true</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  }</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  }</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  }</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable-2">iterator</span> <span class="cm-comment">// 返回迭代器对象 iterator</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre>
+            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">for</span> (<span class="cm-keyword">const</span> <span class="cm-def">item</span> <span class="cm-keyword">of</span> <span class="cm-variable">range</span>) {</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-variable-2">item</span>)</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre>
+            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">range</span> <span class="cm-operator">=</span> {</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">from</span>: <span class="cm-number">1</span>,</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">to</span>: <span class="cm-number">5</span>,</span></pre>
+            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  [<span class="cm-variable">Symbol</span>.<span class="cm-property">iterator</span>]() {</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">this</span>.<span class="cm-property">current</span> <span class="cm-operator">=</span> <span class="cm-keyword">this</span>.<span class="cm-property">from</span>;</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">return</span> <span class="cm-keyword">this</span>; &nbsp;<span class="cm-comment">// 返回 range 对象本身，使其自身作为迭代器来简化代码, 缺点：不能在range对象上运行2个及以上for of 循环 </span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  },</span></pre>
+            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">next</span>() {</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">if</span> (<span class="cm-keyword">this</span>.<span class="cm-property">current</span> <span class="cm-operator">&lt;=</span> <span class="cm-keyword">this</span>.<span class="cm-property">to</span>) {</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">return</span> { <span class="cm-property">done</span>: <span class="cm-atom">false</span>, <span class="cm-property">value</span>: <span class="cm-keyword">this</span>.<span class="cm-property">current</span><span class="cm-operator">++</span> };</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  } <span class="cm-keyword">else</span> {</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-keyword">return</span> { <span class="cm-property">done</span>: <span class="cm-atom">true</span> };</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp;  }</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  }</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;">};</span></pre>
+            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">for</span> (<span class="cm-keyword">let</span> <span class="cm-def">num</span> <span class="cm-keyword">of</span> <span class="cm-variable">range</span>) {</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-variable-2">num</span>); <span class="cm-comment">// 1, 然后是 2, 3, 4, 5</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre>
+            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 无穷迭代器</span></span></pre>
+            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">/* 字符串是可迭代的 */</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">for</span> (<span class="cm-keyword">let</span> <span class="cm-def">char</span> <span class="cm-keyword">of</span> <span class="cm-string">"test"</span>) {</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-comment">// 触发 4 次，每个字符一次</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-variable-2">char</span>); <span class="cm-comment">// t, e, s, t</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">/* 代理对儿，UTF-16扩展字符*/</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">let</span> <span class="cm-def">str</span> <span class="cm-operator">=</span> <span class="cm-string">'𝒳😂'</span>;</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">for</span> (<span class="cm-keyword">let</span> <span class="cm-def">char</span> <span class="cm-keyword">of</span> <span class="cm-variable">str</span>) {</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-variable-2">char</span>); <span class="cm-comment">// 𝒳，然后是 😂</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre>
+            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">/* 显式调用迭代器 */</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">str</span> <span class="cm-operator">=</span> <span class="cm-string">"Hello"</span>;</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 和 for..of 做相同的事</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// for (let char of str) alert(char);</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 创建迭代器对象</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">let</span> <span class="cm-def">iterator</span> <span class="cm-operator">=</span> <span class="cm-variable">str</span>[<span class="cm-variable">Symbol</span>.<span class="cm-property">iterator</span>]();</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">while</span> (<span class="cm-atom">true</span>) {</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">let</span> <span class="cm-def">result</span> <span class="cm-operator">=</span> <span class="cm-variable">iterator</span>.<span class="cm-property">next</span>();</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">if</span> (<span class="cm-variable-2">result</span>.<span class="cm-property">done</span>) <span class="cm-keyword">break</span>;</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-variable-2">result</span>.<span class="cm-property">value</span>); <span class="cm-comment">// 一个接一个地输出字符</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre>
+            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">/* 可迭代（iterable）和类数组（array-like） */</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">/* </span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">Iterable 是指实现了 Symbol.iterator 方法的对象。</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">Array-like 是指有索引 index 和长度 length 属性的对象，所以它们看起来很像数组。</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">二者之间没有必然的关联关系！！</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">可迭代对象和类数组对象通常都 【不是数组】，它们没有 push 和 pop 等方法</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">*/</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">let</span> <span class="cm-def">arrayLike</span> <span class="cm-operator">=</span> { <span class="cm-comment">// 有索引和 length 属性 =&gt; 类数组对象</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-number cm-property">0</span>: <span class="cm-string">"Hello"</span>,</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-number cm-property">1</span>: <span class="cm-string">"World"</span>,</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">length</span>: <span class="cm-number">2</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;">};</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// Error (no Symbol.iterator)</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// for (let item of arrayLike) { }</span></span></pre>
+            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">/* Array.from 接收 interable 或 array-like，返回一个array */</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">let</span> <span class="cm-def">arr</span> <span class="cm-operator">=</span> <span class="cm-variable">Array</span>.<span class="cm-property">from</span>(<span class="cm-variable">arrayLike</span>);</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-variable">arr</span>.<span class="cm-property">pop</span>()); <span class="cm-comment">// World（pop 方法有效）</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">array_range</span> <span class="cm-operator">=</span> <span class="cm-variable">Array</span>.<span class="cm-property">from</span>(<span class="cm-variable">range</span>)</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-variable">array_range</span>.<span class="cm-property">toString</span>())</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// Array.from(obj[, mapFn, thisArg]) </span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">arr</span> <span class="cm-operator">=</span> <span class="cm-variable">Array</span>.<span class="cm-property">from</span>(<span class="cm-variable">range</span>, <span class="cm-def">num</span> <span class="cm-operator">=&gt;</span> <span class="cm-variable-2">num</span> <span class="cm-operator">*</span> <span class="cm-variable-2">num</span> <span class="cm-operator">*</span> <span class="cm-variable-2">num</span>)</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-variable">arr</span>)</span></pre>
+            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">str</span> <span class="cm-operator">=</span> <span class="cm-string">'𝒳😂'</span>;</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 将 str 拆分为字符数组</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">let</span> <span class="cm-def">chars</span> <span class="cm-operator">=</span> <span class="cm-variable">Array</span>.<span class="cm-property">from</span>(<span class="cm-variable">str</span>);</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-variable">chars</span>[<span class="cm-number">0</span>]); <span class="cm-comment">// 𝒳</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-variable">chars</span>[<span class="cm-number">1</span>]); <span class="cm-comment">// 😂</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-variable">chars</span>.<span class="cm-property">length</span>); <span class="cm-comment">// 2</span></span></pre>
+            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">chars</span> <span class="cm-operator">=</span> []</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">for</span> (<span class="cm-keyword">const</span> <span class="cm-def">char</span> <span class="cm-keyword">of</span> <span class="cm-variable">str</span>) {</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-variable">chars</span>.<span class="cm-property">push</span>(<span class="cm-variable-2">char</span>)</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-variable">chars</span>)</span></pre>
+            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 自定义slice方法</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">function</span> <span class="cm-def">slice</span>(<span class="cm-def">str</span>, <span class="cm-def">start</span>, <span class="cm-def">end</span>) {</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-keyword">return</span> <span class="cm-variable">Array</span>.<span class="cm-property">from</span>(<span class="cm-variable-2">str</span>).<span class="cm-property">slice</span>(<span class="cm-variable-2">start</span>, <span class="cm-variable-2">end</span>).<span class="cm-property">join</span>(<span class="cm-string">''</span>);</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">str</span> <span class="cm-operator">=</span> <span class="cm-string">'𝒳😂𩷶'</span>;</span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-variable">slice</span>(<span class="cm-variable">str</span>, <span class="cm-number">1</span>, <span class="cm-number">3</span>)); <span class="cm-comment">// 😂𩷶</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 原生方不支持识别代理对（译注：UTF-16 扩展字符）</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-variable">str</span>.<span class="cm-property">slice</span>(<span class="cm-number">1</span>, <span class="cm-number">3</span>)); <span class="cm-comment">// 乱码（两个不同 UTF-16 扩展字符碎片拼接的结果）</span></span></pre>
+            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">/* </span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">应用 for..of 的对象被称为 可迭代的。</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">1. 可迭代对象必须实现 Symbol.iterator 方法。</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">2. obj[Symbol.iterator]() 的结果被称为 迭代器（iterator）。由它处理进一步的迭代过程。</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">3. 一个迭代器必须有 next() 方法，它返回一个 {done: Boolean, value: any} 对象，这里 done:true 表明迭代结束，否则 value 就是下一个值。</span></span></pre>
+            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">有索引属性和 length 属性的对象被称为 类数组对象</span></span></pre>
+            <pre class=" CodeMirror-line "
+                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">Array.from(obj[, mapFn, thisArg]) 将可迭代对象或类数组对象 obj 转化为真正的数组 Array</span></span></pre>
+            <div class="" style="position: relative;">
+                <pre class=" CodeMirror-line "
+                    role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">*/</span></span></pre>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 3757px;"></div>
+    <div class="CodeMirror-gutters" style="display: none; height: 3757px;"></div>
+    </div>
+    </div>
+    </pre>
+    <p>&nbsp;</p>
+    </div>
+    </div>
+</body>
+
+</html>
