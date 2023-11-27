@@ -4,8 +4,8 @@
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width initial-scale=1'>
-    <link type="text/css" rel="styleSheet" href="../../../../assets/css/style.css" />
-    <link type="text/css" rel="styleSheet" href="../../../../assets/css/typora.css" />
+    <link type="text/css" rel="styleSheet" href="../css/style.css" />
+    <link type="text/css" rel="styleSheet" href="../css/typora.css" />
     <title>5.1-原始类型的方法</title>
     <script src="../../js/数据类型/5.1-原始类型的方法.js"></script>
 </head>
@@ -14,72 +14,65 @@
     <div class='typora-export-content'>
         <div id='write' class=''>
             <pre class="md-fences md-end-block ty-contain-cm modeLoaded md-focus" spellcheck="false" lang="javascript"
-                style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap CodeMirror-focused" lang="javascript"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 9.52344px; left: 8px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"><pre><span>xxxxxxxxxx</span></pre>
+                style="break-inside: unset;"><div class="CodeMirror cm-s-inner cm-s-null-scroll CodeMirror-wrap CodeMirror-focused" lang="javascript"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 147.744px; left: 355.113px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; bottom: -1em; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-scrollbar-filler" cm-not-content="true"></div><div class="CodeMirror-gutter-filler" cm-not-content="true"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; margin-bottom: 0px; border-right-width: 0px; padding-right: 0px; padding-bottom: 0px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines" role="presentation"><div role="presentation" style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-code" role="presentation" style=""><div class="" style="position: relative;"><pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 原始类型（基础数据类型）： string，number，bigint，boolean，symbol，null，undefined</span></span></pre>
         </div>
-        <div class="CodeMirror-measure"></div>
-        <div style="position: relative; z-index: 1;"></div>
-        <div class="CodeMirror-code" role="presentation" style="">
-            <div class="CodeMirror-activeline" style="position: relative;">
-                <div class="CodeMirror-activeline-background CodeMirror-linebackground"></div>
-                <div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;">
-                </div>
-                <pre class=" CodeMirror-line "
-                    role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 原始类型（基础数据类型）： string，number，bigint，boolean，symbol，null，undefined</span></span></pre>
-            </div>
-            <pre class=" CodeMirror-line "
-                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 对象：1，多个键值对；2，可以使用大括号{}；3，函数也是对象</span></span></pre>
-            <pre class=" CodeMirror-line "
-                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">let</span> <span class="cm-def">john</span> <span class="cm-operator">=</span> {</span></pre>
-            <pre class=" CodeMirror-line "
-                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">name</span>: <span class="cm-string">"John"</span>,</span></pre>
-            <pre class=" CodeMirror-line "
-                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">sayHi</span>: <span class="cm-keyword">function</span>(){</span></pre>
-            <pre class=" CodeMirror-line "
-                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">"Hi,I'm John."</span>)</span></pre>
+        <pre class=" CodeMirror-line "
+            role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 对象：1，多个键值对；2，可以使用大括号{}；3，函数也是对象</span></span></pre>
+        <pre class=" CodeMirror-line "
+            role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">let</span> <span class="cm-def">john</span> <span class="cm-operator">=</span> {</span></pre>
+        <pre class=" CodeMirror-line "
+            role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">name</span>: <span class="cm-string">"John"</span>,</span></pre>
+        <pre class=" CodeMirror-line "
+            role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp;<span class="cm-property">sayHi</span>: <span class="cm-keyword">function</span>(){</span></pre>
+        <pre class=" CodeMirror-line "
+            role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">"Hi,I'm John."</span>)</span></pre>
+        <div class="CodeMirror-activeline" style="position: relative;">
+            <div class="CodeMirror-activeline-background CodeMirror-linebackground"></div>
+            <div class="CodeMirror-gutter-background CodeMirror-activeline-gutter" style="left: 0px; width: 0px;"></div>
             <pre class=" CodeMirror-line "
                 role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp; &nbsp; &nbsp; &nbsp;<span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-string">"Hi,I'm John."</span>.<span class="cm-property">toUpperCase</span>()) <span class="cm-comment">/*当作对象的原始类型*/</span></span></pre>
-            <pre class=" CodeMirror-line "
-                role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  }</span></pre>
-            <pre class=" CodeMirror-line "
-                role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre>
-            <pre class=" CodeMirror-line "
-                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">john</span>.<span class="cm-property">sayHi</span>()</span></pre>
-            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
-</span></span></pre>
-            <pre class=" CodeMirror-line "
-                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 内置对象：日期，错误，HTML，．．．(可以理解为官方库)</span></span></pre>
-            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
-</span></span></pre>
-            <pre class=" CodeMirror-line "
-                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">/* 当作对象的原始类型 */</span></span></pre>
-            <pre class=" CodeMirror-line "
-                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 对象包装器 String，Number，Boolean，Symbol，Bigint，把原始类型看作对象类型，调用它们的方法和属性</span></span></pre>
-            <pre class=" CodeMirror-line "
-                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">let</span> <span class="cm-def">n</span> <span class="cm-operator">=</span><span class="cm-number">1.23456</span></span></pre>
-            <pre class=" CodeMirror-line "
-                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-variable">n</span>.<span class="cm-property">toFixed</span>(<span class="cm-number">3</span>))</span></pre>
-            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
-</span></span></pre>
-            <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
-</span></span></pre>
-            <pre class=" CodeMirror-line "
-                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 构造器 String/Number/Boolean 仅供内部使用</span></span></pre>
-            <pre class=" CodeMirror-line "
-                role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 特殊的原始类型 null 和 undefined 是例外。它们没有对应的“对象包装器”，也没有提供任何方法。从某种意义上说，它们是“最原始的”。</span></span></pre>
-            <div class="" style="position: relative;">
-                <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
-</span></span></pre>
-            </div>
         </div>
+        <pre class=" CodeMirror-line "
+            role="presentation"><span role="presentation" style="padding-right: 0.1px;"> &nbsp;  }</span></pre>
+        <pre class=" CodeMirror-line "
+            role="presentation"><span role="presentation" style="padding-right: 0.1px;">}</span></pre>
+        <pre class=" CodeMirror-line "
+            role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">john</span>.<span class="cm-property">sayHi</span>()</span></pre>
+        <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+        <pre class=" CodeMirror-line "
+            role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 内置对象：日期，错误，HTML，．．．(可以理解为官方库)</span></span></pre>
+        <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+        <pre class=" CodeMirror-line "
+            role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">/* 当作对象的原始类型 */</span></span></pre>
+        <pre class=" CodeMirror-line "
+            role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 对象包装器 String，Number，Boolean，Symbol，Bigint，把原始类型看作对象类型，调用它们的方法和属性</span></span></pre>
+        <pre class=" CodeMirror-line "
+            role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-keyword">let</span> <span class="cm-def">n</span> <span class="cm-operator">=</span><span class="cm-number">1.23456</span></span></pre>
+        <pre class=" CodeMirror-line "
+            role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-variable">console</span>.<span class="cm-property">log</span>(<span class="cm-variable">n</span>.<span class="cm-property">toFixed</span>(<span class="cm-number">3</span>))</span></pre>
+        <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+        <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
+        <pre class=" CodeMirror-line "
+            role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 构造器 String/Number/Boolean 仅供内部使用</span></span></pre>
+        <pre class=" CodeMirror-line "
+            role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span class="cm-comment">// 特殊的原始类型 null 和 undefined 是例外。它们没有对应的“对象包装器”，也没有提供任何方法。从某种意义上说，它们是“最原始的”。</span></span></pre>
+        <pre class=" CodeMirror-line " role="presentation"><span role="presentation" style="padding-right: 0.1px;"><span cm-text="" cm-zwsp="">
+</span></span></pre>
     </div>
     </div>
     </div>
     </div>
-    <div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 553px;"></div>
-    <div class="CodeMirror-gutters" style="display: none; height: 553px;"></div>
+    </div>
+    <div style="position: absolute; height: 0px; width: 1px; border-bottom: 0px solid transparent; top: 530px;"></div>
+    <div class="CodeMirror-gutters" style="display: none; height: 530px;"></div>
     </div>
     </div>
     </pre>
+    <p>&nbsp;</p>
     </div>
     </div>
 </body>
